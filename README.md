@@ -1,14 +1,14 @@
-# Nginx redirector
+# Nginx redirect
 
-This is a very simple nginx docker image that helps you redirecting HTTP request to the `www` sub-domain.
+This is a very simple nginx docker image that helps you redirecting HTTP requests to the `www` sub-domain.
 
 **Rationale:**<br>
 It is a common use case to have a project on a hypothetical `www.example.com`. 
 What about requests going to  `example.com`?<br>
-Of course you can configure your project to redirect requests to the `www` sub-domain... 
-but this should happen only for the "production/live" environment, not on "staging" 
+Of course you can configure your project to redirect requests to the `www` sub-domain...<br> 
+What is this should happen only for the "production/live" environment and for "staging"? 
 (as most likely is going to look something as `www-staging.example.com`).<br>
-On staging ha having `staging.example.com` to redirect to `www-staging.example.com` could make no sense and will 
+On staging having `staging.example.com` to redirect to `www-staging.example.com` could make no sense and will 
 require a different rule.
 
 Redirecting to `www` is not responsibility of "your" application and can be done outside of it. 
@@ -61,3 +61,7 @@ All the configurations are optional.
 
 - `REDIRECT_CODE`: HTTP redirect code (the default is 301)
 - `REDIRECT_SUBDOMAIN`: to which sub-domain redirect (the default is to prepend `www.` to the original hostname)
+
+## Other info
+
+The project supports properly HTTPS redirects and respects the `X-Forwarded-Proto` and `X-Forwarded-Port` headers.
