@@ -1,0 +1,11 @@
+server {
+    server_name "~^(.*)$";
+
+    access_log  off;
+    error_log off;
+
+    if ($http_x_forwarded_proto = "https") {
+        return ${REDIRECT_CODE} https://${REDIRECT_SUBDOMAIN}.$1$request_uri;
+    }
+    return ${REDIRECT_CODE} $scheme://${REDIRECT_SUBDOMAIN}.$1$request_uri;
+}
