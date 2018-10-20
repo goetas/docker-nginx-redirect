@@ -1,3 +1,7 @@
+map $http_x_forwarded_port $proxy_x_forwarded_port {
+  default ":$http_x_forwarded_port";
+  ''      '';
+}
 server {
     server_name "~^(.*)$";
 
@@ -5,7 +9,7 @@ server {
     error_log off;
 
     if ($http_x_forwarded_proto = "https") {
-        return ${REDIRECT_CODE} https://${REDIRECT_SUBDOMAIN}.$1$request_uri;
+        return ${REDIRECT_CODE} https://${REDIRECT_SUBDOMAIN}.$host$proxy_x_forwarded_port$request_uri;
     }
-    return ${REDIRECT_CODE} $scheme://${REDIRECT_SUBDOMAIN}.$1$request_uri;
+    return ${REDIRECT_CODE} $scheme://${REDIRECT_SUBDOMAIN}.$host$proxy_x_forwarded_port$request_uri;
 }
