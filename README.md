@@ -49,9 +49,9 @@ In this example:
 - `web`: is listening on the port 80 (is the only container exposed to the outside)
 - `myproject`: is the image that holds the code for your project, 
    and does not need to be aware which is going to be the hostname where the "project" will be exposed.
-   <br>_The proxy will forward to it requests that are directed to the `www.example.com` host (thanks to `VIRTUAL_HOST=www.example.com`)_
+   <br>_The proxy will forward to it requests that are directed to `www.example.com` (thanks to `VIRTUAL_HOST=www.example.com`)_
 - `www_redirector`: redirects eventual requests from `http://example.com` to `http://www.example.com`
-   <br>_The proxy will forward to it requests that are directed to the `example.com` host (thanks to `VIRTUAL_HOST=example.com`)_
+   <br>_The proxy will forward to it requests that are directed to `example.com` (thanks to `VIRTUAL_HOST=example.com`)_
    
    
 ## Configuration variables
@@ -65,3 +65,5 @@ All the configurations are optional.
 ## Other info
 
 The project supports properly HTTPS redirects and respects the `X-Forwarded-Proto` and `X-Forwarded-Port` headers.
+
+This image is based on the latest nginx docker image.
